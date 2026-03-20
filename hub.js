@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
         countryData.documents.forEach(doc => {
             const link = document.createElement("a");
             // Apunta al visualizador dinámico que armamos previamente
-            link.href = `index.html?docType=${doc.id}&country=${countryCode}`; 
+            link.href = `viewer.html?docType=${doc.id}&country=${countryCode}`; 
             link.className = "document-card";
             link.innerHTML = `
                 <div class="doc-icon">EJ</div>
