@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/cms/:path*",
+      "destination": "https://oficinavirtualcms.swissjust.com/:path*"
+    }
+  ]
+}

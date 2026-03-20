@@ -49,8 +49,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Construimos la URL de la API del CMS dinámicamente
-    const CMS_API_URL = `https://oficinavirtualcms.swissjust.com/items/${country}_legals_docs/${docType}?fields=id,title,content`;
+    // Construimos la URL dinámicamente. 
+    // Usamos el Proxy de Vercel en la nube para evadir CORS de manera segura.
+    // En desarrollo local seguimos usando la conexión directa.
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    const CMS_API_URL = isLocalhost 
+        ? `https://oficinavirtualcms.swissjust.com/items/${country}_legals_docs/${docType}?fields=id,title,content`
+        : `/api/cms/items/${country}_legals_docs/${docType}?fields=id,title,content`;
 
     /**
      * Fetch document from CMS and inject it into the page
