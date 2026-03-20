@@ -1,0 +1,152 @@
+/* Estilos específicos para el Hub de documentos */
+
+.hub-body {
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    padding: var(--spacing-lg) var(--spacing-sm);
+}
+
+.hub-container {
+    max-width: 1000px;
+    width: 100%;
+    /* Sin la línea lateral del documento para que sea más amplio */
+    border-right: none; 
+    padding: 0;
+    min-height: calc(100vh - var(--spacing-lg) * 2);
+    display: flex;
+    flex-direction: column;
+}
+
+.hub-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* Selector de países */
+.country-selector {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+    animation: fadeIn 0.8s ease-out;
+}
+
+.country-btn {
+    background: transparent;
+    border: 1px solid var(--line-color);
+    color: var(--primary-olive);
+    font-family: var(--font-sans);
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 40px; /* Estilo píldora */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.country-btn:hover {
+    border-color: var(--primary-olive);
+    background-color: rgba(138, 154, 101, 0.05); /* Hover sutil */
+}
+
+.country-btn.active {
+    background-color: var(--primary-olive);
+    color: #FFF;
+    border-color: var(--primary-olive);
+    box-shadow: 0 4px 15px rgba(138, 154, 101, 0.2);
+}
+
+/* Contenedor de documentos */
+.documents-container {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+    margin-bottom: var(--spacing-xl);
+    flex-grow: 1;
+    animation: fadeIn 1s ease-out;
+    border: 1px solid rgba(211, 216, 198, 0.4);
+}
+
+.country-title {
+    font-family: var(--font-serif-heading);
+    color: var(--primary-olive);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--line-color);
+}
+
+.documents-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+    .documents-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tarjeta individual de documento */
+.document-card {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem;
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    text-decoration: none;
+    color: var(--text-olive);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.document-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--line-color);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.04);
+}
+
+.doc-icon {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(138, 154, 101, 0.1);
+    color: var(--primary-olive);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-weight: bold;
+    font-family: var(--font-sans);
+    flex-shrink: 0;
+}
+
+.doc-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.doc-title {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    color: var(--primary-olive);
+    margin-bottom: 0.2rem;
+    font-size: 1.05rem;
+}
+
+.doc-type-badge {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+}
+
+/* Animación cuando cambian los documentos */
+.fade-in-content {
+    animation: fadeIn 0.4s ease-out;
+}

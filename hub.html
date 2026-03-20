@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub de Documentos Legales - SwissJust</title>
+    <!-- Mismas fuentes y estilos base + estilos del hub -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="hub.css">
+</head>
+<body class="hub-body">
+    <main class="hub-container">
+        <header class="hub-header">
+            <h1 class="main-title">Acuerdos <span class="italic-serif">SwissJust</span></h1>
+            <p class="subtitle">Selecciona tu país para visualizar los documentos legales</p>
+        </header>
+
+        <!-- Selector de Países -->
+        <div class="country-selector" id="country-selector">
+            <!-- Los botones se generarán por JS -->
+        </div>
+
+        <!-- Lista de Documentos -->
+        <div class="documents-container" id="documents-container">
+            <h2 class="country-title" id="selected-country-title">Selecciona un país</h2>
+            <div class="documents-list" id="documents-list">
+                <!-- Los documentos se generarán por JS -->
+            </div>
+        </div>
+        
+        <footer class="document-footer" style="max-width: 100%;">
+            <div class="footer-details">
+                <span>Versión Autorizada</span>
+                <span>SwissJust Oficial</span>
+            </div>
+        </footer>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="hub.js"></script>
+</body>
+</html>

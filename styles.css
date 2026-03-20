@@ -1,0 +1,299 @@
+/* Typography Imports from CMS */
+
+/* NHass Grotesk (Titles) */
+@font-face {
+    font-family: 'NHass Grotesk';
+    src: url('https://oficinavirtualcms.swissjust.com/assets/2540c99d-8931-4c7a-bbd8-7abedc45023e') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'NHass Grotesk';
+    src: url('https://oficinavirtualcms.swissjust.com/assets/312ca2e8-4188-4f52-9fcc-946a5a3766c1') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Freight (Body & Italics) */
+@font-face {
+    font-family: 'Freight';
+    src: url('https://oficinavirtualcms.swissjust.com/assets/eb6b6f1f-3d8f-437e-9363-ded9aedf7b7b') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Freight';
+    src: url('https://oficinavirtualcms.swissjust.com/assets/53efe915-3f4a-4e1f-8307-d4a72bc594d3') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Freight';
+    src: url('https://oficinavirtualcms.swissjust.com/assets/51bcae49-7d56-43d7-969d-4fea9049cf15') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Freight';
+    src: url('https://oficinavirtualcms.swissjust.com/assets/baae5c17-4bfb-4318-b8b5-465e4964df16') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Freight';
+    src: url('https://oficinavirtualcms.swissjust.com/assets/3859361b-b001-4b98-baae-3214a62a932e') format('opentype');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Base Variables extracted from Reference Image */
+:root {
+    --bg-color: #F8F6F0; /* Soft warm cream */
+    --primary-olive: #8A9A65; /* Olive green used in headings */
+    --text-olive: #83867D; /* Grayish olive used in body text */
+    --line-color: #D3D8C6; /* Subtle olive line */
+    --bg-darker: #F0ECD7; /* slightly darker cream for elements */
+    
+    /* Typography */
+    --font-sans: 'NHass Grotesk', 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-serif-heading: 'Freight', 'Freight Display', 'Freight Text', Georgia, serif;
+    --font-serif-body: 'Freight', 'Freight Text', Georgia, serif;
+    
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+}
+
+/* Global Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-olive);
+    font-family: var(--font-serif-body);
+    line-height: 1.8;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Top Navigation Bar */
+.viewer-top-bar {
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    font-family: var(--font-sans);
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--primary-olive);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #6A7A45;
+}
+
+.switcher-container {
+    max-width: 400px;
+    width: 60%;
+}
+
+.styled-select {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--line-color);
+    border-radius: 40px;
+    background-color: var(--bg-color);
+    font-family: var(--font-sans);
+    color: var(--primary-olive);
+    font-size: 0.9rem;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238A9A65' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+.styled-select:focus {
+    border-color: var(--primary-olive);
+}
+
+/* Layout */
+.document-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-md);
+    position: relative;
+    /* Subtle vertical line on the right, matching the reference image layout */
+    border-right: 1px solid var(--line-color);
+    min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+    .document-container {
+        border-right: none;
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+}
+
+/* Typography styles matching reference */
+.document-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.main-title {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--primary-olive);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.main-title .italic-serif {
+    font-family: var(--font-serif-heading);
+    font-weight: 400;
+    font-style: italic;
+}
+
+.subtitle {
+    margin-top: var(--spacing-sm);
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    color: var(--primary-olive);
+    opacity: 0.8;
+}
+
+/* CMS Content Typography */
+#content-container {
+    font-family: var(--font-serif-body);
+    font-size: 1.1rem;
+    max-width: 680px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+#content-container h1, 
+#content-container h2, 
+#content-container h3, 
+#content-container h4 {
+    font-family: var(--font-sans);
+    color: var(--primary-olive);
+    font-weight: 500;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.3;
+}
+
+#content-container h1 { font-size: 2.2rem; }
+#content-container h2 { font-size: 1.8rem; }
+#content-container h3 { font-size: 1.4rem; }
+
+#content-container p {
+    margin-bottom: var(--spacing-md);
+}
+
+#content-container ul,
+#content-container ol {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-md);
+}
+
+#content-container li {
+    margin-bottom: var(--spacing-xs);
+}
+
+#content-container strong {
+    font-weight: 700;
+    color: #6A7A45;
+}
+
+/* Fix for CMS paragraphs wrapped entirely in strong tags */
+#content-container p > strong:only-child {
+    font-weight: normal;
+    color: inherit;
+}
+
+/* Footer details matching the small text at the bottom */
+.document-footer {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-md);
+    max-width: 680px;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    color: var(--primary-olive);
+    opacity: 0.7;
+}
+
+/* Skeleton Loader State */
+.skeleton-text {
+    background: linear-gradient(90deg, #F0ECD7 25%, #E4DEC1 50%, #F0ECD7 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite linear;
+    color: transparent !important;
+    border-radius: 6px;
+    display: inline-block;
+    min-width: 60%;
+}
+
+.skeleton-block {
+    height: 1.1rem;
+    margin-bottom: 0.8rem;
+    background: linear-gradient(90deg, #F0ECD7 25%, #E4DEC1 50%, #F0ECD7 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite linear;
+    border-radius: 4px;
+}
+
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.error-message {
+    padding: var(--spacing-md);
+    background-color: rgba(138, 154, 101, 0.1);
+    border-left: 4px solid var(--primary-olive);
+    border-radius: 4px;
+    color: var(--primary-olive);
+    font-family: var(--font-sans);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
