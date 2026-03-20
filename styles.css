@@ -1,16 +1,16 @@
-/* Typography Imports from CMS */
+/* Typography Imports from local repository */
 
 /* NHass Grotesk (Titles) */
 @font-face {
     font-family: 'NHass Grotesk';
-    src: url('https://oficinavirtualcms.swissjust.com/assets/2540c99d-8931-4c7a-bbd8-7abedc45023e') format('opentype');
+    src: url('fonts/nhass-400.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'NHass Grotesk';
-    src: url('https://oficinavirtualcms.swissjust.com/assets/312ca2e8-4188-4f52-9fcc-946a5a3766c1') format('opentype');
+    src: url('fonts/nhass-500.otf') format('opentype');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -19,35 +19,35 @@
 /* Freight (Body & Italics) */
 @font-face {
     font-family: 'Freight';
-    src: url('https://oficinavirtualcms.swissjust.com/assets/eb6b6f1f-3d8f-437e-9363-ded9aedf7b7b') format('opentype');
+    src: url('fonts/freight-400.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Freight';
-    src: url('https://oficinavirtualcms.swissjust.com/assets/53efe915-3f4a-4e1f-8307-d4a72bc594d3') format('opentype');
+    src: url('fonts/freight-400-italic.otf') format('opentype');
     font-weight: 400;
     font-style: italic;
     font-display: swap;
 }
 @font-face {
     font-family: 'Freight';
-    src: url('https://oficinavirtualcms.swissjust.com/assets/51bcae49-7d56-43d7-969d-4fea9049cf15') format('opentype');
+    src: url('fonts/freight-500.otf') format('opentype');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Freight';
-    src: url('https://oficinavirtualcms.swissjust.com/assets/baae5c17-4bfb-4318-b8b5-465e4964df16') format('opentype');
+    src: url('fonts/freight-500-italic.otf') format('opentype');
     font-weight: 500;
     font-style: italic;
     font-display: swap;
 }
 @font-face {
     font-family: 'Freight';
-    src: url('https://oficinavirtualcms.swissjust.com/assets/3859361b-b001-4b98-baae-3214a62a932e') format('opentype');
+    src: url('fonts/freight-700.otf') format('opentype');
     font-weight: 700; /* Bold */
     font-style: normal;
     font-display: swap;
