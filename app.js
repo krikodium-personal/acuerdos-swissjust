@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Escuchar cambios en el dropdown para redirigir
         switcherSelect.addEventListener("change", (e) => {
             const newDocType = e.target.value;
-            window.location.href = `index.html?docType=${newDocType}&country=${country}`;
+            window.location.href = `viewer.html?docType=${newDocType}&country=${country}`;
         });
     }
 

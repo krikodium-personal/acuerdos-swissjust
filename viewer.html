@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acuerdos - SwissJust</title>
+    <!-- Brand Typography: Freight and NHass Grotesk will be loaded by the platform or should be installed -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Barra superior de navegación -->
+    <div class="viewer-top-bar">
+        <a href="index.html" class="back-link">&larr; Volver al Hub</a>
+        <div class="switcher-container">
+            <select id="document-switcher" class="styled-select">
+                <option value="" disabled selected>Cargando documentos...</option>
+            </select>
+        </div>
+    </div>
+
+    <main class="document-container">
+        <!-- Hero Section indicating the document topic -->
+        <header class="document-header">
+            <h1 class="main-title skeleton-text" id="page-main-title">&nbsp;</h1>
+            <p class="subtitle" id="country-subtitle">&nbsp;</p>
+        </header>
+        
+        <!-- Document Content injected here -->
+        <div id="content-container">
+            <div class="skeleton-block" style="width: 40%; height: 2rem; margin-bottom: 2rem;"></div>
+            <div class="skeleton-block" style="width: 100%;"></div>
+            <div class="skeleton-block" style="width: 95%;"></div>
+            <div class="skeleton-block" style="width: 90%;"></div>
+            <br>
+            <div class="skeleton-block" style="width: 100%;"></div>
+            <div class="skeleton-block" style="width: 80%;"></div>
+            <div class="skeleton-block" style="width: 85%;"></div>
+        </div>
+        
+        <!-- Footer / Document Info -->
+        <footer class="document-footer">
+            <div class="footer-details">
+                <span>Versión Autorizada</span>
+                <span>SwissJust Oficial</span>
+            </div>
+        </footer>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
