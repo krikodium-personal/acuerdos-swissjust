@@ -22,25 +22,39 @@ document.addEventListener("DOMContentLoaded", () => {
         subtitleElement.textContent = countryName;
     }
 
+    // Construimos la URL dinámicamente. 
+    // Usamos el Proxy de Vercel en la nube para evadir CORS de manera segura.
+    // En desarrollo local seguimos usando la conexión directa.
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
     // Configurar Dropdown y el Título de "Ver otros Documentos de <pais>"
     if (switcherSelect && currentCountryData) {
         switcherSelect.innerHTML = `<option value="" disabled>Ver otros documentos de ${countryName}...</option>`;
         
-        currentCountryData.documents.forEach(doc => {
-            const option = document.createElement("option");
-            option.value = doc.id;
-            option.textContent = doc.title;
-            
-            if(doc.id === docType) {
-                option.selected = true; // El documento actual
-                // Set the H1 title immediately using our local DB, avoiding UI Flash
-                if (mainTitleElement) {
-                    mainTitleElement.textContent = doc.title;
-                    mainTitleElement.classList.remove("skeleton-text");
-                }
-            }
-            switcherSelect.appendChild(option);
-        });
+        const LIST_API_URL = isLocalhost 
+            ? `https://oficinavirtualcms.swissjust.com/items/${country}_legals_docs?fields=id,title`
+            : `/api/cms/items/${country}_legals_docs?fields=id,title`;
+
+        fetch(LIST_API_URL)
+            .then(res => res.json())
+            .then(data => {
+                const docs = data.data || [];
+                docs.forEach(doc => {
+                    const option = document.createElement("option");
+                    option.value = doc.id;
+                    option.textContent = doc.title;
+                    
+                    if(doc.id === docType) {
+                        option.selected = true; // El documento actual
+                        if (mainTitleElement && (mainTitleElement.textContent === '' || mainTitleElement.classList.contains("skeleton-text"))) {
+                            mainTitleElement.textContent = doc.title;
+                            mainTitleElement.classList.remove("skeleton-text");
+                        }
+                    }
+                    switcherSelect.appendChild(option);
+                });
+            })
+            .catch(err => console.error("Error loading dropdown data:", err));
 
         // Escuchar cambios en el dropdown para redirigir
         switcherSelect.addEventListener("change", (e) => {
@@ -49,10 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Construimos la URL dinámicamente. 
-    // Usamos el Proxy de Vercel en la nube para evadir CORS de manera segura.
-    // En desarrollo local seguimos usando la conexión directa.
-    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
     const CMS_API_URL = isLocalhost 
         ? `https://oficinavirtualcms.swissjust.com/items/${country}_legals_docs/${docType}?fields=id,title,content`
         : `/api/cms/items/${country}_legals_docs/${docType}?fields=id,title,content`;

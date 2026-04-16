@@ -43,29 +43,47 @@ document.addEventListener("DOMContentLoaded", () => {
         // Actualizar el título con animación
         countryTitle.textContent = `Documentos ${countryData.name}`;
         
-        // Vaciar la lista actual
-        documentsList.innerHTML = '';
+        // Vaciar la lista y mostrar estado de carga
+        documentsList.innerHTML = '<p style="text-align:center; padding: 2rem;">Cargando documentos...</p>';
         documentsList.classList.remove("fade-in-content");
-        
-        // Renderizar los documentos de ese país
-        countryData.documents.forEach(doc => {
-            const link = document.createElement("a");
-            // Apunta al visualizador dinámico que armamos previamente
-            link.href = `viewer.html?docType=${doc.id}&country=${countryCode}`; 
-            link.className = "document-card";
-            link.innerHTML = `
-                <div class="doc-icon">EJ</div>
-                <div class="doc-info">
-                    <span class="doc-title">${doc.title}</span>
-                    <span class="doc-type-badge">TIPO: ${doc.id.toUpperCase()}</span>
-                </div>
-            `;
-            documentsList.appendChild(link);
-        });
 
-        // Trigger reflow for animation
-        void documentsList.offsetWidth; 
-        documentsList.classList.add("fade-in-content");
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const CMS_API_URL = isLocalhost 
+            ? `https://oficinavirtualcms.swissjust.com/items/${countryCode}_legals_docs?fields=id,title`
+            : `/api/cms/items/${countryCode}_legals_docs?fields=id,title`;
+
+        fetch(CMS_API_URL)
+            .then(res => res.json())
+            .then(data => {
+                const docs = data.data || [];
+                documentsList.innerHTML = '';
+                
+                if (docs.length === 0) {
+                    documentsList.innerHTML = '<p style="text-align:center; padding: 2rem;">No hay documentos disponibles para este país.</p>';
+                }
+                
+                docs.forEach(doc => {
+                    const link = document.createElement("a");
+                    link.href = `viewer.html?docType=${doc.id}&country=${countryCode}`; 
+                    link.className = "document-card";
+                    link.innerHTML = `
+                        <div class="doc-icon">EJ</div>
+                        <div class="doc-info">
+                            <span class="doc-title">${doc.title}</span>
+                            <span class="doc-type-badge">TIPO: ${doc.id.toUpperCase()}</span>
+                        </div>
+                    `;
+                    documentsList.appendChild(link);
+                });
+
+                // Trigger reflow for animation
+                void documentsList.offsetWidth; 
+                documentsList.classList.add("fade-in-content");
+            })
+            .catch(error => {
+                console.error("Error loading documents:", error);
+                documentsList.innerHTML = '<p style="text-align:center; padding: 2rem;">Error al cargar los documentos.</p>';
+            });
     }
 
     // Iniciar
