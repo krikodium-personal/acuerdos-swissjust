@@ -25,6 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función al seleccionar un país en específico
     function selectCountry(countryCode) {
+        // Actualizar la URL sin recargar la página
+        const url = new URL(window.location);
+        url.searchParams.set('country', countryCode);
+        window.history.replaceState({}, '', url);
+
         // Actualizar botones UI
         document.querySelectorAll(".country-btn").forEach(btn => {
             btn.classList.remove("active");
@@ -66,9 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Iniciar
     renderCountryButtons();
     
-    // Seleccionar por defecto el primero o mediante variable si la hubiera
+    // Seleccionar por defecto el de la URL o el primero
+    const urlParams = new URLSearchParams(window.location.search);
+    const countryFromUrl = urlParams.get('country');
     const firstCountryCode = Object.keys(documentsByCountry)[0];
-    if (firstCountryCode) {
+    
+    if (countryFromUrl && documentsByCountry[countryFromUrl]) {
+        selectCountry(countryFromUrl);
+    } else if (firstCountryCode) {
         selectCountry(firstCountryCode);
     }
 });
