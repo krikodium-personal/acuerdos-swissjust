@@ -92,8 +92,48 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
                 
+                let contentString = data.data.content;
+
+                // Reemplazamos los parámetros si es un documento de Business Plan (bp)
+                if (docType === 'bp') {
+                    try {
+                        const paramsResponse = await fetch(`https://incorporarme.swissjust.com/api/${country}/business-parameters/business-plan/parameters`);
+                        if (paramsResponse.ok) {
+                            const paramsData = await paramsResponse.json();
+                            
+                            // Determinamos un locale (por ej. es-AR, es-CO, en-US) según el país para separar miles
+                            let locale = 'es-' + country.toUpperCase();
+                            if (country.toLowerCase() === 'us') locale = 'en-US';
+                            if (country.toLowerCase() === 'ch') locale = 'fr-CH';
+
+                            const paramsMap = {};
+                            paramsData.forEach(param => {
+                                // Mantenemos el porcentaje tal como viene
+                                if (param.valueDescription && param.valueDescription.includes('%')) {
+                                    paramsMap[param.id] = param.valueDescription;
+                                } else if (typeof param.value === 'number') {
+                                    try {
+                                        paramsMap[param.id] = param.value.toLocaleString(locale);
+                                    } catch (e) {
+                                        paramsMap[param.id] = param.value.toLocaleString('es-AR');
+                                    }
+                                } else {
+                                    paramsMap[param.id] = param.valueDescription || param.value;
+                                }
+                            });
+
+                            // Reemplazamos todas las ocurrencias de {{ID}} o {{ ID }}
+                            contentString = contentString.replace(/\{\{\s*([a-zA-Z0-9_]+)\s*\}\}/g, (match, paramName) => {
+                                return paramsMap[paramName] !== undefined ? paramsMap[paramName] : match;
+                            });
+                        }
+                    } catch (error) {
+                        console.error("Error cargando parámetros del business plan:", error);
+                    }
+                }
+                
                 // Injectamos el contenido
-                contentContainer.innerHTML = data.data.content;
+                contentContainer.innerHTML = contentString;
             } else {
                 throw new Error("El formato de respuesta del CMS no es válido.");
             }
